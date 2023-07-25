@@ -15,6 +15,6 @@ This project is a classic Rock-Paper-Scissors (RPS) game developed using C# and 
 1. Choose the number of rounds you want to play by clicking on the appropriate option.
 2. Choose "Rock," "Paper," or "Scissors" by clicking on the respective images.
 3. Each round's result (Win, Lose, or Draw) will be displayed, along with the choices made by the player and the computer.
-4. Play a total of 10 rounds to complete the game.
-5. After 10 rounds, the game will announce the overall winner - whether you won or lost against the computer.
+4. Complete the selected number of rounds to finish the game.
+5. After playing the chosen rounds, the game will announce the overall winner - whether you won or lost against the computer.
 ### Try out the game now: [RockPaperScissorsBlazorApp](https://icy-water-01f6d1510.3.azurestaticapps.net)
