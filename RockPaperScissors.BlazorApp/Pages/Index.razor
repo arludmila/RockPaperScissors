@@ -1,0 +1,28 @@
+﻿@page "/"
+@inject NavigationManager NavigationManager
+<PageTitle>Index</PageTitle>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+<body>
+    <h3 class="text-center mt-3">Rock, Paper, Scissors</h3>
+
+    <div class="container mt-4">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-4">
+                <label for="rounds">Select the number of rounds:</label>
+                <select id="rounds" class="form-select mb-3" @bind="roundsAmount">
+                    <option value="5">5 Rounds</option>
+                    <option value="10" selected>10 Rounds</option>
+                    <option value="15">15 Rounds</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-4">
+                <button class="btn btn-primary btn-block" @onclick="GoToSingleplayer">Play against PC</button>
+            </div>
+        </div>
+    </div>
+</body>

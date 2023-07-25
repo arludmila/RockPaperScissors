@@ -1,0 +1,42 @@
+﻿namespace RockPaperScissors.Entities.Core
+{
+    /// <summary>
+    /// Represents the "Rock" choice in the Rock-Paper-Scissors game.
+    /// </summary>
+    public class Rock : Choice
+    {
+        public override string Type { get; } = nameof(Rock);
+        /// <summary>
+        /// Initializes a new instance of the Rock class with the specified name.
+        /// </summary>
+        /// <param name="name">The name of the choice ("rock").</param>
+        public Rock() : base("rock")
+        {
+        }
+        /// <summary>
+        /// Determines the result of a round in the Rock-Paper-Scissors game for the player's choice (Rock) against the opponent's choice.
+        /// Overrides the base method to provide custom outcome mappings.
+        /// </summary>
+        /// <param name="opponentChoice">The opponent's choice (Rock, Paper, or Scissors).</param>
+        /// <returns>A GameResult object representing the outcome of the round.</returns>
+        public override GameResult GetResultAgainst(Choice opponentChoice)
+        {
+            if (opponentChoice is Rock)
+                return GetGameResult(opponentChoice, Outcome.Draw);
+            else if (opponentChoice is Paper)
+                return GetGameResult(opponentChoice, Outcome.Lose);
+            else if (opponentChoice is Scissors)
+                return GetGameResult(opponentChoice, Outcome.Win);
+
+            throw new ArgumentException("Invalid choice type.", nameof(opponentChoice));
+        }
+        /// <summary>
+        /// Returns the name of the choice ("rock") as a string representation of the Rock object.
+        /// </summary>
+        /// <returns>The name of the choice as a string.</returns>
+        public override string ToString()
+        {
+            return Name;
+        }
+    }
+}

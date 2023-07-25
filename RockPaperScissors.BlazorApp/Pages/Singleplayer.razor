@@ -1,0 +1,150 @@
+﻿@page "/singleplayer/{MaxRounds:int}"
+@using RockPaperScissors.Entities.Core;
+@using RockPaperScissors.Entities.DTOs;
+@inject RockPaperScissors.Business.RPSGameService rpsGameService
+<PageTitle>Singleplayer</PageTitle>
+<!-- Razor Page for Rock-Paper-Scissors Game -->
+<head>
+    <!-- External CSS for animation -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+<!-- Main body of the page -->
+<body class="body-bg">
+    <!-- Game UI when the game is active -->
+    @if (!isGameOver)
+    {
+        <div class="container gameContent">
+            <!-- Game Status: Round, Player Score, and PC Score -->
+            <div class="row mt-4">
+                <div class="col text-center">
+                    <h4>Round: @currentRound</h4>
+                </div>
+                <div class="col text-center">
+                    <h4>Player Score: @playerScore</h4>
+                </div>
+                <div class="col text-center">
+                    <h4>PC Score: @opponentScore</h4>
+                </div>
+                <!-- Button to reset scores -->
+                @if (isGameActive)
+                {
+                    <div class="col text-center">
+                        <button class="btn btn-primary" @onclick="ResetScores">Reset Scores</button>
+                    </div>
+                }
+                else
+                {
+                    <div class="col text-center">
+                        <button class="btn btn-primary">Reset Scores</button>
+                    </div>
+                }
+            </div>
+            <!-- Instructions for the user to choose Rock, Paper, or Scissors -->
+            <h5 class="text-center">Please choose Rock, Paper, or Scissors:</h5>
+            <!-- User Choices -->
+            <div class="d-flex justify-content-center">
+                @if (isGameActive)
+                {
+                    <a @onclick="OnClickRock">
+                        <img src="rock.png" alt="Rock" class="choice-image img-fluid" />
+                    </a>
+                    <a @onclick="OnClickPaper">
+                        <img src="paper.png" alt="Paper" class="choice-image img-fluid" />
+                    </a>
+                    <a @onclick="OnClickScissors">
+                        <img src="scissors.png" alt="Scissors" class="choice-image img-fluid" />
+                    </a>
+                }
+                else
+                {
+                    <a>
+                        <img src="rock.png" alt="Rock" class="choice-image img-fluid" />
+                    </a>
+                    <a>
+                        <img src="paper.png" alt="Paper" class="choice-image img-fluid" />
+                    </a>
+                    <a>
+                        <img src="scissors.png" alt="Scissors" class="choice-image img-fluid" />
+                    </a>
+                }
+            </div>
+            <!-- Display result and player/PC choices when rounds are played -->
+            @if (currentRound != 0)
+            {
+                <div class="response-container text-center mt-4">
+                    <!-- Result section -->
+                    @if (!string.IsNullOrEmpty(roundResultMsg))
+                    {
+                        <div>
+                            <h4>Result:</h4>
+                            <div class="d-flex justify-content-center align-items-center">
+                                <img src="@GetResultImage(roundResultMsg)" alt="Result Image" class="result-image img-fluid" />
+                                <p class="result-text">@roundResultMsg</p>
+                            </div>
+                        </div>
+                    }
+                    <!-- Player and Opponent choices section -->
+                    @if (!string.IsNullOrEmpty(playerChoiceStr) && !string.IsNullOrEmpty(opponentChoiceStr))
+                    {
+                        <div class="row mt-4">
+                            <div class="col text-center">
+                                <h4>Player choice:</h4>
+                                @if (playerChoiceStr == "rock")
+                                {
+                                    <img src="rock-small.png" alt="Rock" class="choice-image-small img-fluid" />
+                                }
+                                else if (playerChoiceStr == "paper")
+                                {
+                                    <img src="paper-small.png" alt="Paper" class="choice-image-small img-fluid" />
+                                }
+                                else if (playerChoiceStr == "scissors")
+                                {
+                                    <img src="scissors-small.png" alt="Scissors" class="choice-image-small img-fluid" />
+                                }
+                            </div>
+                            <div class="col text-center">
+                                <h4>PC choice:</h4>
+                                @if (opponentChoiceStr == "rock")
+                                {
+                                    <img src="rock-small.png" alt="Rock" class="choice-image-small img-fluid" />
+                                }
+                                else if (opponentChoiceStr == "paper")
+                                {
+                                    <img src="paper-small.png" alt="Paper" class="choice-image-small img-fluid" />
+                                }
+                                else if (opponentChoiceStr == "scissors")
+                                {
+                                    <img src="scissors-small.png" alt="Scissors" class="choice-image-small img-fluid" />
+                                }
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <!-- Display the final result when the game is over -->
+        <div class="text-center mt-4 animate__animated animate__lightSpeedInRight" style="display: @(isGameOver ? "block" : "none")">
+            <div class="row mt-4">
+                <div class="col text-center">
+                    <h4>Player Score: @playerScore</h4>
+                </div>
+                <div class="col text-center">
+                    <h4>PC Score: @opponentScore</h4>
+                </div>
+            </div>
+            <h1>@finalGameMessage</h1>
+            <button class="btn btn-primary mt-3" @onclick="ResetScores">Play Again</button>
+         </div>
+
+        
+    }
+
+</body>
+
+
+
+
