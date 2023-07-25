@@ -35,9 +35,6 @@
                 }
                 else
                 {
-                    <div class="col text-center">
-                        <button class="btn btn-primary">Reset Scores</button>
-                    </div>
                 }
             </div>
             <!-- Instructions for the user to choose Rock, Paper, or Scissors -->
@@ -58,7 +55,12 @@
                 }
                 else
                 {
-                    <div class="inactive-overlay">
+                    <!--class="inactive-overlay"-->
+                    <div>
+                        <button class="btn btn-info" type="button" disabled>
+                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                            Loading Results... 
+                        </button>
                     </div>
                     
                 }
