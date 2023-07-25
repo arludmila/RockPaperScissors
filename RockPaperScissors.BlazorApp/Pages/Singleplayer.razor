@@ -58,17 +58,12 @@
                 }
                 else
                 {
-                    <a>
-                        <img src="rock.png" alt="Rock" class="choice-image img-fluid" />
-                    </a>
-                    <a>
-                        <img src="paper.png" alt="Paper" class="choice-image img-fluid" />
-                    </a>
-                    <a>
-                        <img src="scissors.png" alt="Scissors" class="choice-image img-fluid" />
-                    </a>
+                    <div class="inactive-overlay">
+                    </div>
+                    
                 }
             </div>
+
             <!-- Display result and player/PC choices when rounds are played -->
             @if (currentRound != 0)
             {

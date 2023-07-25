@@ -67,7 +67,7 @@ namespace RockPaperScissors.BlazorApp.Pages
                 {
                     isGameActive = false;
                     finalGameMessage = "YOU WON! 😊";
-                    await Task.Delay(2000);
+                    await Task.Delay(2700);
                     isGameOver = true;
                     StateHasChanged();
                 }
@@ -75,7 +75,7 @@ namespace RockPaperScissors.BlazorApp.Pages
                 {
                     isGameActive = false;
                     finalGameMessage = "YOU LOST! 😭";
-                    await Task.Delay(2000);
+                    await Task.Delay(2700);
                     isGameOver = true;
                     StateHasChanged();
                 }
